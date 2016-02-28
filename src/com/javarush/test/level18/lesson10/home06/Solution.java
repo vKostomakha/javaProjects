@@ -16,36 +16,31 @@ f 361
 */
 
 import java.io.*;
+import java.text.DecimalFormatSymbols;
 
 public class Solution {
     public static void main(String[] args) throws IOException {
 
         if (args.length > 0) {
 
-
             String fileName = args[0];
 
             FileInputStream fileReader = new FileInputStream(fileName);
 
-            byte[] bytes = new byte[255];
-            char[] symbols = new char[255];
+            long[] bytes = new long[255];
+
             while (fileReader.available() > 0) {
-
-                byte b = (byte) fileReader.read();
-                bytes[b]++;
-                symbols[b] = (char) b;
+                bytes[fileReader.read()]++;
             }
-
-            fileReader.close();
 
             for (int i = 0; i < bytes.length; i++) {
 
                 if (bytes[i] != 0) {
-
-                    System.out.println(String.valueOf(symbols[i]) + " " + bytes[i]);
+                    System.out.println((char) i + " " + bytes[i]);
                 }
             }
 
+            fileReader.close();
         }
     }
 }
